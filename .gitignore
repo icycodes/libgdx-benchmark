@@ -47,3 +47,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.gradle
+gradle
+gradlew
+gradlew.bat
+build/
