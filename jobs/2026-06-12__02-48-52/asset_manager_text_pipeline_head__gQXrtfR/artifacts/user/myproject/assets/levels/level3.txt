@@ -1,4 +1,0 @@
-# Boss level
-name=Volcano
-enemies=0
-difficulty=10

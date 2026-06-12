@@ -1,9 +1,0 @@
-# sample animation
-frameDuration 0.5
-playMode LOOP_PINGPONG
-keyFrames 10 20 30
-sample 0
-sample 0.5
-sample 1.0
-sample 1.5
-sample 2.0

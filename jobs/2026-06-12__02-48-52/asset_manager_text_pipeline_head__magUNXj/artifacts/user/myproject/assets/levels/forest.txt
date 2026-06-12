@@ -1,3 +1,0 @@
-name=Dark Forest
-enemies=12
-difficulty=3

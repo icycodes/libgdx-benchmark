@@ -1,2 +1,0 @@
-test-levels/1.txt
-test-levels/2.txt

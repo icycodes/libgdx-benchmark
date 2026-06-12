@@ -1,4 +1,0 @@
-# Level manifest
-assets/levels/forest.txt
-assets/levels/cave.txt
-assets/levels/dungeon.txt

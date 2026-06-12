@@ -1,3 +1,0 @@
-# Missing GRAVITY
-BODY 0 0
-STEPS 10

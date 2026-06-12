@@ -1,5 +1,0 @@
-# Impulse decimal step
-GRAVITY 0 0
-BODY 0 0
-STEPS 10
-IMPULSE 2.5 1 1

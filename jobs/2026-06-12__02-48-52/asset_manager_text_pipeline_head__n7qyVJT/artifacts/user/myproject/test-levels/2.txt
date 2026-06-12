@@ -1,3 +1,0 @@
-name=Level2
-enemies=20
-difficulty=2

@@ -1,3 +1,0 @@
-name=Castle
-difficulty=7
-enemies=12

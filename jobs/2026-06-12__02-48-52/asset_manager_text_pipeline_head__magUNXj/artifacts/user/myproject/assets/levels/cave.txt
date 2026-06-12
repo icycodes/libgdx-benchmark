@@ -1,3 +1,0 @@
-difficulty=5
-enemies=8
-name=Crystal Cave

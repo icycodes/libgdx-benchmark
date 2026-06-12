@@ -1,2 +1,0 @@
-rootProject.name = 'match-replay-server'
-include 'core', 'server'

@@ -1,6 +1,0 @@
-# Duplicate MASS
-GRAVITY 0 0
-BODY 0 0
-MASS 1
-MASS 2
-STEPS 10

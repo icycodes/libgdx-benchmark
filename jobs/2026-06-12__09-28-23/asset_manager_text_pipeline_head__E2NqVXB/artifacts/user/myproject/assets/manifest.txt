@@ -1,3 +1,0 @@
-# This is our test manifest
-assets/level1.txt
-assets/level2.txt

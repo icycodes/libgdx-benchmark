@@ -1,5 +1,0 @@
-# Impulse step out of bounds
-GRAVITY 0 0
-BODY 0 0
-STEPS 10
-IMPULSE 10 1 1

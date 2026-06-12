@@ -1,3 +1,0 @@
-name=Level One
-enemies=15
-difficulty=2

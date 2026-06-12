@@ -1,4 +1,0 @@
-rootProject.name = 'viewport-projector'
-
-include 'core'
-include 'headless'

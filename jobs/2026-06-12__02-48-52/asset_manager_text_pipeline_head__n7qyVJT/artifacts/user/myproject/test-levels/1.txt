@@ -1,3 +1,0 @@
-name=Level1
-enemies=10
-difficulty=1

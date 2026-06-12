@@ -1,4 +1,0 @@
-# This is a comment
-name=Level Two
-enemies=42
-difficulty=5

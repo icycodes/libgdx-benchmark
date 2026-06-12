@@ -1,3 +1,0 @@
-name=Forest
-enemies=5
-difficulty=2

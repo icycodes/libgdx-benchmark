@@ -1,7 +1,0 @@
-# Valid scenario with mass override and impulses
-GRAVITY 0 0
-BODY 0 0
-MASS 1
-STEPS 10
-IMPULSE 0 10 0
-IMPULSE 5 -5 0

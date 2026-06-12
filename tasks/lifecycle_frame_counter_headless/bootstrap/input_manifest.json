@@ -1,7 +1,0 @@
-{
-  "library_name": "libGDX",
-  "task_name": "lifecycle_frame_counter_headless",
-  "complexity_level": "simple set of 2-5 commands",
-  "research_plan_path": "plan.md",
-  "output_dir": "tasks/"
-}

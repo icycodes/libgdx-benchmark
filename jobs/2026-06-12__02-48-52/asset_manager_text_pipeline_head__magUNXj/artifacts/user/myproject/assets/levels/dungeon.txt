@@ -1,5 +1,0 @@
-# This is a comment
-
-name=Final Dungeon
-enemies=25
-difficulty=10
