@@ -1,0 +1,7 @@
+# Level list for testing
+assets/levels/level1.txt
+# This is a comment line
+
+assets/levels/level2.txt
+# Another comment
+assets/levels/level3.txt

@@ -1,0 +1,3 @@
+# Missing BODY
+GRAVITY 0 0
+STEPS 10

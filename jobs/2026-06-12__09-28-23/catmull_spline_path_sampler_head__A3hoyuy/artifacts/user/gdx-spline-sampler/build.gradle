@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+dependencies {
+    implementation "com.badlogicgames.gdx:gdx:1.14.2"
+    implementation "com.badlogicgames.gdx:gdx-backend-headless:1.14.2"
+    runtimeOnly "com.badlogicgames.gdx:gdx-platform:1.14.2:natives-desktop"
+}
+
+application {
+    mainClass = 'com.badlogic.gdx.splinesampler.Main'
+}
+
+// Ensure build is reproducible and uses UTF-8
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

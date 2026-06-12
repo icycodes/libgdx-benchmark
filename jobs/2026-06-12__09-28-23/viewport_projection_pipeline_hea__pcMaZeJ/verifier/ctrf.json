@@ -1,0 +1,122 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-12T01:58:42.944323+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 9,
+            "passed": 5,
+            "failed": 4,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781229493712,
+            "stop": 1781229522944
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_directory_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781229493732,
+                "stop": 1781229493733,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_gradle_wrapper_exists",
+                "status": "passed",
+                "duration": 0,
+                "start": 1781229493733,
+                "stop": 1781229493733,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_core_and_headless_modules_present",
+                "status": "passed",
+                "duration": 0,
+                "start": 1781229493734,
+                "stop": 1781229493734,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_uses_libgdx_headless_backend_1_14_2",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781229493734,
+                "stop": 1781229493736,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_fit_viewport_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7145,
+                "start": 1781229493736,
+                "stop": 1781229500881,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_fit_viewport_scenario():\n        scenario_path = \"/tmp/fit.json\"\n        _write_scenario(scenario_path, FIT_SCENARIO)\n        result = _run_launcher(scenario_path, OUTPUT_LOG)\n        assert result.returncode == 0, (\n            f\"`gradlew headless:run` failed with exit code {result.returncode}.\\n\"\n            f\"STDOUT:\\n{result.stdout}\\nSTDERR:\\n{result.stderr}\"\n        )\n>       assert os.path.isfile(OUTPUT_LOG), (\n            f\"Expected output log at {OUTPUT_LOG} but the file was not created.\"\n        )\nE       AssertionError: Expected output log at /tmp/output.log but the file was not created.\nE       assert False\nE        +  where False = <function isfile at 0x7656053902c0>('/tmp/output.log')\nE        +    where <function isfile at 0x7656053902c0> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:154: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_stretch_viewport_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7064,
+                "start": 1781229500882,
+                "stop": 1781229507946,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_stretch_viewport_scenario():\n        scenario_path = \"/tmp/stretch.json\"\n        _write_scenario(scenario_path, STRETCH_SCENARIO)\n        result = _run_launcher(scenario_path, OUTPUT_LOG)\n        assert result.returncode == 0, (\n            f\"`gradlew headless:run` failed with exit code {result.returncode}.\\n\"\n            f\"STDOUT:\\n{result.stdout}\\nSTDERR:\\n{result.stderr}\"\n        )\n>       lines = _read_log(OUTPUT_LOG)\n\ntests/test_final_state.py:205: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/tmp/output.log'\n\n    def _read_log(path: str) -> list[str]:\n>       with open(path, encoding=\"utf-8\") as f:\nE       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/output.log'\n\ntests/test_final_state.py:102: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_empty_frame_counting",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7443,
+                "start": 1781229507947,
+                "stop": 1781229515390,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_empty_frame_counting():\n        scenario_path = \"/tmp/empty.json\"\n        _write_scenario(scenario_path, EMPTY_SCENARIO)\n        result = _run_launcher(scenario_path, OUTPUT_LOG)\n        assert result.returncode == 0, (\n            f\"`gradlew headless:run` failed with exit code {result.returncode}.\\n\"\n            f\"STDOUT:\\n{result.stdout}\\nSTDERR:\\n{result.stderr}\"\n        )\n>       lines = _read_log(OUTPUT_LOG)\n\ntests/test_final_state.py:247: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\npath = '/tmp/output.log'\n\n    def _read_log(path: str) -> list[str]:\n>       with open(path, encoding=\"utf-8\") as f:\nE       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/output.log'\n\ntests/test_final_state.py:102: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_output_is_overwritten_between_runs",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 7552,
+                "start": 1781229515390,
+                "stop": 1781229522942,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_output_is_overwritten_between_runs():\n        # Run stretch scenario first.\n        stretch_path = \"/tmp/stretch.json\"\n        _write_scenario(stretch_path, STRETCH_SCENARIO)\n        first = _run_launcher(stretch_path, OUTPUT_LOG)\n        assert first.returncode == 0, (\n            f\"First run (stretch) failed: {first.stderr}\"\n        )\n>       assert os.path.isfile(OUTPUT_LOG), \"Output log missing after first run.\"\nE       AssertionError: Output log missing after first run.\nE       assert False\nE        +  where False = <function isfile at 0x7656053902c0>('/tmp/output.log')\nE        +    where <function isfile at 0x7656053902c0> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:266: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_gradlew_executable",
+                "status": "passed",
+                "duration": 0,
+                "start": 1781229522943,
+                "stop": 1781229522943,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

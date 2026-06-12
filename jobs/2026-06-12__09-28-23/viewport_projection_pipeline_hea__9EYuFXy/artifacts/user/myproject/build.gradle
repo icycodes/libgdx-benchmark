@@ -1,0 +1,17 @@
+ext {
+    gdxVersion = '1.14.2'
+}
+
+allprojects {
+    group = 'com.example.viewportprojector'
+    version = '1.0.0'
+}
+
+subprojects {
+    plugins.withType(JavaPlugin).configureEach {
+        java {
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
+        }
+    }
+}

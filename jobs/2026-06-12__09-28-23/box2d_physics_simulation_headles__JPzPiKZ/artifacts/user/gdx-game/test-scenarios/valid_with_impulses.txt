@@ -1,0 +1,6 @@
+# Valid scenario with impulses
+GRAVITY 0 0
+BODY 0 0
+STEPS 10
+IMPULSE 0 10 0
+IMPULSE 5 -5 0

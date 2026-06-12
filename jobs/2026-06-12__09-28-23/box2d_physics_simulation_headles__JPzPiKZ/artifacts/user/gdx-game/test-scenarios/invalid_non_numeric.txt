@@ -1,0 +1,4 @@
+# Non-numeric token
+GRAVITY 0 abc
+BODY 0 0
+STEPS 10

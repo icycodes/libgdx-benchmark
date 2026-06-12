@@ -1,0 +1,20 @@
+plugins {
+    id 'application'
+}
+
+dependencies {
+    implementation project(':core')
+    implementation "com.badlogicgames.gdx:gdx-backend-headless:1.14.2"
+    runtimeOnly "com.badlogicgames.gdx:gdx-platform:1.14.2:natives-desktop"
+}
+
+application {
+    mainClass = 'com.matchreplay.server.ServerLauncher'
+}
+
+run {
+    // Pass arguments to the application
+    if (project.hasProperty('args')) {
+        args = project.getProperty('args').split()
+    }
+}

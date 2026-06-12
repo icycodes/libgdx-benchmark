@@ -1,0 +1,3 @@
+// Root settings file
+rootProject.name = 'viewport-projector'
+include 'core', 'headless'

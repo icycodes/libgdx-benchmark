@@ -1,0 +1,5 @@
+difficulty=7
+# This is a comment
+name=Desert Fortress
+
+enemies=12

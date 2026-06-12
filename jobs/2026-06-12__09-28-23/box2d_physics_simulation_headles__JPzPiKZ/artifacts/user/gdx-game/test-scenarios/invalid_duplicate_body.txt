@@ -1,0 +1,5 @@
+# Duplicate BODY
+GRAVITY 0 0
+BODY 0 0
+BODY 1 1
+STEPS 10

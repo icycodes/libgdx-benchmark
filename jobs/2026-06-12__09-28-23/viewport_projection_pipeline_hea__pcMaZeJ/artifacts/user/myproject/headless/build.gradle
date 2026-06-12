@@ -1,0 +1,16 @@
+apply plugin: 'application'
+
+application {
+    mainClass = 'com.example.headless.HeadlessLauncher'
+}
+
+run {
+    standardInput = System.in
+}
+
+dependencies {
+    implementation project(':core')
+    implementation "com.badlogicgames.gdx:gdx:1.14.2"
+    implementation "com.badlogicgames.gdx:gdx-backend-headless:1.14.2"
+    implementation "com.badlogicgames.gdx:gdx-platform:1.14.2:natives-desktop"
+}

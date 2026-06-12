@@ -1,0 +1,6 @@
+// Root project: shared configuration for all sub-modules.
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}

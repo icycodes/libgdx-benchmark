@@ -1,0 +1,5 @@
+# Duplicate STEPS
+GRAVITY 0 0
+BODY 0 0
+STEPS 10
+STEPS 20

@@ -1,0 +1,4 @@
+# Valid scenario with gravity, body, and steps, but no impulses
+GRAVITY 0 -9.81
+BODY 0 10
+STEPS 60

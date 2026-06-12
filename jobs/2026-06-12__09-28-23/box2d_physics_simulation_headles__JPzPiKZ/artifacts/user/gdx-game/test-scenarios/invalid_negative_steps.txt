@@ -1,0 +1,4 @@
+# Negative steps
+GRAVITY 0 0
+BODY 0 0
+STEPS -10

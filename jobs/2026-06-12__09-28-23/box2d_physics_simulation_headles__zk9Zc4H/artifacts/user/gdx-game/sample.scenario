@@ -1,0 +1,6 @@
+# simple deterministic scenario
+GRAVITY 0 -9.8
+BODY 0 0
+MASS 1
+IMPULSE 0 60 0
+STEPS 60

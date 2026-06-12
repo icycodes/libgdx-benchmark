@@ -1,0 +1,103 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 9 items
+
+tests/test_final_state.py ....FFFF.                                      [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_fit_viewport_scenario __________________________
+
+    def test_fit_viewport_scenario():
+        scenario_path = "/tmp/fit.json"
+        _write_scenario(scenario_path, FIT_SCENARIO)
+        result = _run_launcher(scenario_path, OUTPUT_LOG)
+        assert result.returncode == 0, (
+            f"`gradlew headless:run` failed with exit code {result.returncode}.\n"
+            f"STDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
+        )
+>       assert os.path.isfile(OUTPUT_LOG), (
+            f"Expected output log at {OUTPUT_LOG} but the file was not created."
+        )
+E       AssertionError: Expected output log at /tmp/output.log but the file was not created.
+E       assert False
+E        +  where False = <function isfile at 0x7656053902c0>('/tmp/output.log')
+E        +    where <function isfile at 0x7656053902c0> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:154: AssertionError
+________________________ test_stretch_viewport_scenario ________________________
+
+    def test_stretch_viewport_scenario():
+        scenario_path = "/tmp/stretch.json"
+        _write_scenario(scenario_path, STRETCH_SCENARIO)
+        result = _run_launcher(scenario_path, OUTPUT_LOG)
+        assert result.returncode == 0, (
+            f"`gradlew headless:run` failed with exit code {result.returncode}.\n"
+            f"STDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
+        )
+>       lines = _read_log(OUTPUT_LOG)
+
+tests/test_final_state.py:205: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/tmp/output.log'
+
+    def _read_log(path: str) -> list[str]:
+>       with open(path, encoding="utf-8") as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/output.log'
+
+tests/test_final_state.py:102: FileNotFoundError
+__________________________ test_empty_frame_counting ___________________________
+
+    def test_empty_frame_counting():
+        scenario_path = "/tmp/empty.json"
+        _write_scenario(scenario_path, EMPTY_SCENARIO)
+        result = _run_launcher(scenario_path, OUTPUT_LOG)
+        assert result.returncode == 0, (
+            f"`gradlew headless:run` failed with exit code {result.returncode}.\n"
+            f"STDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
+        )
+>       lines = _read_log(OUTPUT_LOG)
+
+tests/test_final_state.py:247: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = '/tmp/output.log'
+
+    def _read_log(path: str) -> list[str]:
+>       with open(path, encoding="utf-8") as f:
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/output.log'
+
+tests/test_final_state.py:102: FileNotFoundError
+___________________ test_output_is_overwritten_between_runs ____________________
+
+    def test_output_is_overwritten_between_runs():
+        # Run stretch scenario first.
+        stretch_path = "/tmp/stretch.json"
+        _write_scenario(stretch_path, STRETCH_SCENARIO)
+        first = _run_launcher(stretch_path, OUTPUT_LOG)
+        assert first.returncode == 0, (
+            f"First run (stretch) failed: {first.stderr}"
+        )
+>       assert os.path.isfile(OUTPUT_LOG), "Output log missing after first run."
+E       AssertionError: Output log missing after first run.
+E       assert False
+E        +  where False = <function isfile at 0x7656053902c0>('/tmp/output.log')
+E        +    where <function isfile at 0x7656053902c0> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:266: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_project_directory_exists
+PASSED tests/test_final_state.py::test_gradle_wrapper_exists
+PASSED tests/test_final_state.py::test_core_and_headless_modules_present
+PASSED tests/test_final_state.py::test_uses_libgdx_headless_backend_1_14_2
+PASSED tests/test_final_state.py::test_gradlew_executable
+FAILED tests/test_final_state.py::test_fit_viewport_scenario - AssertionError...
+FAILED tests/test_final_state.py::test_stretch_viewport_scenario - FileNotFou...
+FAILED tests/test_final_state.py::test_empty_frame_counting - FileNotFoundErr...
+FAILED tests/test_final_state.py::test_output_is_overwritten_between_runs - A...
+========================= 4 failed, 5 passed in 29.23s =========================

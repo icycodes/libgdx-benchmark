@@ -1,0 +1,125 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-12T01:52:44.383133+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 9,
+            "passed": 4,
+            "failed": 5,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781229121432,
+            "stop": 1781229164383
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_project_directory_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781229121451,
+                "stop": 1781229121452,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_gradle_wrapper_exists",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781229121452,
+                "stop": 1781229121453,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_core_and_headless_modules_present",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781229121453,
+                "stop": 1781229121454,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_uses_libgdx_headless_backend_1_14_2",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 17,
+                "start": 1781229121454,
+                "stop": 1781229121471,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_uses_libgdx_headless_backend_1_14_2():\n        \"\"\"The research plan pins libGDX to 1.14.2. Verify any build.gradle declares the headless backend.\"\"\"\n        found = False\n        pattern = re.compile(\n            r\"gdx-backend-headless[\\\"':\\s]*1\\.14\\.2\", re.IGNORECASE\n        )\n        for root, _dirs, files in os.walk(PROJECT_DIR):\n            if os.sep + \".gradle\" + os.sep in root + os.sep:\n                continue\n            if os.sep + \"build\" + os.sep in root + os.sep:\n                continue\n            for fname in files:\n                if fname.endswith(\".gradle\") or fname.endswith(\".gradle.kts\"):\n                    path = os.path.join(root, fname)\n                    try:\n                        with open(path, encoding=\"utf-8\") as f:\n                            content = f.read()\n                    except OSError:\n                        continue\n                    if pattern.search(content):\n                        found = True\n                        break\n            if found:\n                break\n>       assert found, (\n            \"No build.gradle under the project references `gdx-backend-headless:1.14.2`. \"\n            \"The research plan pins libGDX to 1.14.2 and the task requires the headless backend.\"\n        )\nE       AssertionError: No build.gradle under the project references `gdx-backend-headless:1.14.2`. The research plan pins libGDX to 1.14.2 and the task requires the headless backend.\nE       assert False\n\ntests/test_final_state.py:67: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_fit_viewport_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8248,
+                "start": 1781229121472,
+                "stop": 1781229129720,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_fit_viewport_scenario():\n        scenario_path = \"/tmp/fit.json\"\n        _write_scenario(scenario_path, FIT_SCENARIO)\n        result = _run_launcher(scenario_path, OUTPUT_LOG)\n        assert result.returncode == 0, (\n            f\"`gradlew headless:run` failed with exit code {result.returncode}.\\n\"\n            f\"STDOUT:\\n{result.stdout}\\nSTDERR:\\n{result.stderr}\"\n        )\n        assert os.path.isfile(OUTPUT_LOG), (\n            f\"Expected output log at {OUTPUT_LOG} but the file was not created.\"\n        )\n        lines = _read_log(OUTPUT_LOG)\n>       assert lines == FIT_EXPECTED, (\n            \"FitViewport scenario produced unexpected output.\\n\"\n            f\"Expected:\\n{chr(10).join(FIT_EXPECTED)}\\n\\nActual:\\n{chr(10).join(lines)}\"\n        )\nE       AssertionError: FitViewport scenario produced unexpected output.\nE         Expected:\nE         FRAME 0 PROJECT (0.000,0.000) -> (0.000,0.000)\nE         FRAME 0 PROJECT (50.000,50.000) -> (100.000,100.000)\nE         FRAME 0 PROJECT (100.000,100.000) -> (200.000,200.000)\nE         FRAME 1 PROJECT (50.000,50.000) -> (200.000,100.000)\nE         ROUNDTRIP 0 (0.000,0.000) -> (0.000,0.000) OK\nE         ROUNDTRIP 0 (50.000,50.000) -> (50.000,50.000) OK\nE         ROUNDTRIP 0 (100.000,100.000) -> (100.000,100.000) OK\nE         ROUNDTRIP 1 (50.000,50.000) -> (50.000,50.000) OK\nE         END frames=2 points=4\nE         \nE         Actual:\nE         FRAME 0 PROJECT (0.000,0.000) -> (0.000,0.000)\nE         FRAME 0 PROJECT (50.000,50.000) -> (100.000,100.000)\nE         FRAME 0 PROJECT (100.000,100.000) -> (200.000,200.000)\nE         FRAME 1 PROJECT (50.000,50.000) -> (200.000,100.000)\nE         ROUNDTRIP 0 (0.000,0.000) -> (0.000,0.000) OK\nE         ROUNDTRIP 0 (50.000,50.000) -> (50.000,-50.000) MISMATCH\nE         ROUNDTRIP 0 (100.000,100.000) -> (100.000,-100.000) MISMATCH\nE         ROUNDTRIP 1 (50.000,50.000) -> (50.000,-50.000) MISMATCH\nE         END frames=2 points=4\nE       assert ['FRAME 0 PRO...ISMATCH', ...] == ['FRAME 0 PRO...000) OK', ...]\nE         At index 5 diff: 'ROUNDTRIP 0 (50.000,50.000) -> (50.000,-50.000) MISMATCH' != 'ROUNDTRIP 0 (50.000,50.000) -> (50.000,50.000) OK'\nE         Use -v to get more diff\n\ntests/test_final_state.py:158: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_stretch_viewport_scenario",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 9288,
+                "start": 1781229129720,
+                "stop": 1781229139008,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_stretch_viewport_scenario():\n        scenario_path = \"/tmp/stretch.json\"\n        _write_scenario(scenario_path, STRETCH_SCENARIO)\n        result = _run_launcher(scenario_path, OUTPUT_LOG)\n        assert result.returncode == 0, (\n            f\"`gradlew headless:run` failed with exit code {result.returncode}.\\n\"\n            f\"STDOUT:\\n{result.stdout}\\nSTDERR:\\n{result.stderr}\"\n        )\n        lines = _read_log(OUTPUT_LOG)\n>       assert lines == STRETCH_EXPECTED, (\n            \"StretchViewport scenario produced unexpected output.\\n\"\n            f\"Expected:\\n{chr(10).join(STRETCH_EXPECTED)}\\n\\nActual:\\n{chr(10).join(lines)}\"\n        )\nE       AssertionError: StretchViewport scenario produced unexpected output.\nE         Expected:\nE         FRAME 0 PROJECT (0.000,0.000) -> (0.000,0.000)\nE         FRAME 0 PROJECT (10.000,10.000) -> (800.000,600.000)\nE         FRAME 0 PROJECT (5.000,5.000) -> (400.000,300.000)\nE         ROUNDTRIP 0 (0.000,0.000) -> (0.000,0.000) OK\nE         ROUNDTRIP 0 (10.000,10.000) -> (10.000,10.000) OK\nE         ROUNDTRIP 0 (5.000,5.000) -> (5.000,5.000) OK\nE         END frames=1 points=3\nE         \nE         Actual:\nE         FRAME 0 PROJECT (0.000,0.000) -> (0.000,0.000)\nE         FRAME 0 PROJECT (10.000,10.000) -> (800.000,600.000)\nE         FRAME 0 PROJECT (5.000,5.000) -> (400.000,300.000)\nE         ROUNDTRIP 0 (0.000,0.000) -> (0.000,0.000) OK\nE         ROUNDTRIP 0 (10.000,10.000) -> (10.000,-10.000) MISMATCH\nE         ROUNDTRIP 0 (5.000,5.000) -> (5.000,-5.000) MISMATCH\nE         END frames=1 points=3\nE       assert ['FRAME 0 PRO...ISMATCH', ...] == ['FRAME 0 PRO...000) OK', ...]\nE         At index 4 diff: 'ROUNDTRIP 0 (10.000,10.000) -> (10.000,-10.000) MISMATCH' != 'ROUNDTRIP 0 (10.000,10.000) -> (10.000,10.000) OK'\nE         Use -v to get more diff\n\ntests/test_final_state.py:206: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_empty_frame_counting",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 8448,
+                "start": 1781229139008,
+                "stop": 1781229147456,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_empty_frame_counting():\n        scenario_path = \"/tmp/empty.json\"\n        _write_scenario(scenario_path, EMPTY_SCENARIO)\n        result = _run_launcher(scenario_path, OUTPUT_LOG)\n        assert result.returncode == 0, (\n            f\"`gradlew headless:run` failed with exit code {result.returncode}.\\n\"\n            f\"STDOUT:\\n{result.stdout}\\nSTDERR:\\n{result.stderr}\"\n        )\n        lines = _read_log(OUTPUT_LOG)\n>       assert lines == EMPTY_EXPECTED, (\n            \"Empty-frame scenario produced unexpected output.\\n\"\n            f\"Expected:\\n{chr(10).join(EMPTY_EXPECTED)}\\n\\nActual:\\n{chr(10).join(lines)}\"\n        )\nE       AssertionError: Empty-frame scenario produced unexpected output.\nE         Expected:\nE         FRAME 1 PROJECT (2.000,2.000) -> (200.000,200.000)\nE         ROUNDTRIP 1 (2.000,2.000) -> (2.000,2.000) OK\nE         END frames=3 points=1\nE         \nE         Actual:\nE         FRAME 1 PROJECT (2.000,2.000) -> (200.000,200.000)\nE         ROUNDTRIP 1 (2.000,2.000) -> (2.000,-2.000) MISMATCH\nE         END frames=3 points=1\nE       assert ['FRAME 1 PRO...s=3 points=1'] == ['FRAME 1 PRO...s=3 points=1']\nE         At index 1 diff: 'ROUNDTRIP 1 (2.000,2.000) -> (2.000,-2.000) MISMATCH' != 'ROUNDTRIP 1 (2.000,2.000) -> (2.000,2.000) OK'\nE         Use -v to get more diff\n\ntests/test_final_state.py:248: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_output_is_overwritten_between_runs",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 16924,
+                "start": 1781229147457,
+                "stop": 1781229164381,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_output_is_overwritten_between_runs():\n        # Run stretch scenario first.\n        stretch_path = \"/tmp/stretch.json\"\n        _write_scenario(stretch_path, STRETCH_SCENARIO)\n        first = _run_launcher(stretch_path, OUTPUT_LOG)\n        assert first.returncode == 0, (\n            f\"First run (stretch) failed: {first.stderr}\"\n        )\n        assert os.path.isfile(OUTPUT_LOG), \"Output log missing after first run.\"\n    \n        # Run empty scenario immediately afterwards, WITHOUT deleting the output file.\n        empty_path = \"/tmp/empty.json\"\n        _write_scenario(empty_path, EMPTY_SCENARIO)\n        cmd = [\n            \"./gradlew\",\n            \"--no-daemon\",\n            \"--console=plain\",\n            \"headless:run\",\n            f\"--args=--scenario={empty_path} --output={OUTPUT_LOG}\",\n        ]\n        second = subprocess.run(\n            cmd, cwd=PROJECT_DIR, capture_output=True, text=True, timeout=600\n        )\n        assert second.returncode == 0, (\n            f\"Second run (empty) failed: {second.stderr}\"\n        )\n        lines = _read_log(OUTPUT_LOG)\n>       assert lines == EMPTY_EXPECTED, (\n            \"Output log was not overwritten between runs.\\n\"\n            f\"Expected only the empty scenario's lines:\\n{chr(10).join(EMPTY_EXPECTED)}\\n\\n\"\n            f\"Actual:\\n{chr(10).join(lines)}\"\n        )\nE       AssertionError: Output log was not overwritten between runs.\nE         Expected only the empty scenario's lines:\nE         FRAME 1 PROJECT (2.000,2.000) -> (200.000,200.000)\nE         ROUNDTRIP 1 (2.000,2.000) -> (2.000,2.000) OK\nE         END frames=3 points=1\nE         \nE         Actual:\nE         FRAME 1 PROJECT (2.000,2.000) -> (200.000,200.000)\nE         ROUNDTRIP 1 (2.000,2.000) -> (2.000,-2.000) MISMATCH\nE         END frames=3 points=1\nE       assert ['FRAME 1 PRO...s=3 points=1'] == ['FRAME 1 PRO...s=3 points=1']\nE         At index 1 diff: 'ROUNDTRIP 1 (2.000,2.000) -> (2.000,-2.000) MISMATCH' != 'ROUNDTRIP 1 (2.000,2.000) -> (2.000,2.000) OK'\nE         Use -v to get more diff\n\ntests/test_final_state.py:285: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_gradlew_executable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781229164381,
+                "stop": 1781229164382,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

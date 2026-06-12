@@ -1,0 +1,3 @@
+rootProject.name = 'my-gdx-game'
+include 'core'
+include 'headless'
