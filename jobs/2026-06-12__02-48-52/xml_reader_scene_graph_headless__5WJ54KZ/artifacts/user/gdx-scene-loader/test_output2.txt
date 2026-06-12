@@ -1,6 +1,0 @@
-world	worldX=100.0000	worldY=200.0000	worldRotationDeg=0.0000	worldScaleX=1.0000	worldScaleY=1.0000
-world.platform	worldX=100.0000	worldY=200.0000	worldRotationDeg=90.0000	worldScaleX=1.0000	worldScaleY=1.0000
-world.platform.crate	worldX=95.0000	worldY=210.0000	worldRotationDeg=45.0000	worldScaleX=2.0000	worldScaleY=2.0000
-world.platform.barrel	worldX=85.0000	worldY=200.0000	worldRotationDeg=90.0000	worldScaleX=0.5000	worldScaleY=0.5000
-world.sky	worldX=100.0000	worldY=700.0000	worldRotationDeg=0.0000	worldScaleX=3.0000	worldScaleY=3.0000
-world.sky.cloud	worldX=160.0000	worldY=730.0000	worldRotationDeg=30.0000	worldScaleX=2.4000	worldScaleY=2.4000

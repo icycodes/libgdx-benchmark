@@ -1,3 +1,0 @@
-root	worldX=10.0000	worldY=20.0000	worldRotationDeg=0.0000	worldScaleX=1.0000	worldScaleY=1.0000
-root.child	worldX=15.0000	worldY=20.0000	worldRotationDeg=45.0000	worldScaleX=1.0000	worldScaleY=1.0000
-root.child.leaf	worldX=15.0000	worldY=24.2426	worldRotationDeg=45.0000	worldScaleX=0.5000	worldScaleY=0.5000
