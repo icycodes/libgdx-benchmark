@@ -1,0 +1,18 @@
+apply plugin: 'application'
+
+application {
+    mainClass = 'com.example.game.headless.HeadlessLauncher'
+}
+
+// Run the application from the root project directory so that relative paths
+// supplied via --args are resolved against the same directory the user runs
+// `./gradlew` from.
+run {
+    workingDir = rootProject.projectDir
+}
+
+dependencies {
+    implementation project(':core')
+    implementation "com.badlogicgames.gdx:gdx-backend-headless:${gdxVersion}"
+    runtimeOnly "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-desktop"
+}

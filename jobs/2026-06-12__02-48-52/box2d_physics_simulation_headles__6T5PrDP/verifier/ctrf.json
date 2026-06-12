@@ -1,0 +1,83 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T19:06:08.365364+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781204760267,
+            "stop": 1781204768365
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_static_body_no_gravity_no_impulse",
+                "status": "passed",
+                "duration": 7231,
+                "start": 1781204760289,
+                "stop": 1781204767520,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_single_impulse_no_gravity",
+                "status": "passed",
+                "duration": 218,
+                "start": 1781204767521,
+                "stop": 1781204767739,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_gravity_drop_no_impulse",
+                "status": "passed",
+                "duration": 195,
+                "start": 1781204767740,
+                "stop": 1781204767935,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_combined_gravity_and_multiple_impulses",
+                "status": "passed",
+                "duration": 183,
+                "start": 1781204767936,
+                "stop": 1781204768119,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_missing_required_header_errors",
+                "status": "passed",
+                "duration": 111,
+                "start": 1781204768119,
+                "stop": 1781204768230,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_impulse_step_out_of_range_errors",
+                "status": "passed",
+                "duration": 135,
+                "start": 1781204768230,
+                "stop": 1781204768365,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

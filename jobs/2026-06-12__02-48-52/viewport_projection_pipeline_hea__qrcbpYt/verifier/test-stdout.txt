@@ -1,0 +1,262 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 9 items
+
+tests/test_final_state.py ....FFFF.                                      [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_fit_viewport_scenario __________________________
+
+    def test_fit_viewport_scenario():
+        scenario_path = "/tmp/fit.json"
+        _write_scenario(scenario_path, FIT_SCENARIO)
+        result = _run_launcher(scenario_path, OUTPUT_LOG)
+>       assert result.returncode == 0, (
+            f"`gradlew headless:run` failed with exit code {result.returncode}.\n"
+            f"STDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
+        )
+E       AssertionError: `gradlew headless:run` failed with exit code 1.
+E         STDOUT:
+E         To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+E         Daemon will be stopped at the end of the build 
+E         > Task :core:compileJava UP-TO-DATE
+E         > Task :core:processResources NO-SOURCE
+E         > Task :core:classes UP-TO-DATE
+E         > Task :core:jar
+E         
+E         > Task :headless:compileJava FAILED
+E         
+E         Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+E         
+E         You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+E         
+E         For more on this, please refer to https://docs.gradle.org/8.10/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+E         3 actionable tasks: 2 executed, 1 up-to-date
+E         
+E         STDERR:
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:15: error: MockGL20 is not abstract and does not override abstract method glGetActiveUniform(int,int,IntBuffer,IntBuffer) in GL20
+E         public class MockGL20 implements GL20 {
+E                ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:98: error: method does not override or implement a method from a supertype
+E             @Override public String glGetActiveAttrib(int program, int index, IntBuffer size, Buffer type) { return ""; }
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:99: error: method does not override or implement a method from a supertype
+E             @Override public String glGetActiveUniform(int program, int index, IntBuffer size, Buffer type) { return ""; }
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:112: error: method does not override or implement a method from a supertype
+E             @Override public void glGetShaderSource(int shader, int bufsize, Buffer length, String source) {}
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:137: error: method does not override or implement a method from a supertype
+E             @Override public void glTexParameterfv(int target, int pname, float[] params, int offset) {}
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:138: error: method does not override or implement a method from a supertype
+E             @Override public void glTexParameteriv(int target, int pname, int[] params, int offset) {}
+E             ^
+E         6 errors
+E         
+E         FAILURE: Build failed with an exception.
+E         
+E         * What went wrong:
+E         Execution failed for task ':headless:compileJava'.
+E         > Compilation failed; see the compiler error output for details.
+E         
+E         * Try:
+E         > Run with --info option to get more log output.
+E         > Run with --scan to get full insights.
+E         
+E         BUILD FAILED in 7s
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['./gradlew', '--no-daemon', '--console=plain', 'headless:run', '--args=--scenario=/tmp/fit.json...y:\n> Run with --info option to get more log output.\n> Run with --scan to get full insights.\n\nBUILD FAILED in 7s\n').returncode
+
+tests/test_final_state.py:150: AssertionError
+________________________ test_stretch_viewport_scenario ________________________
+
+    def test_stretch_viewport_scenario():
+        scenario_path = "/tmp/stretch.json"
+        _write_scenario(scenario_path, STRETCH_SCENARIO)
+        result = _run_launcher(scenario_path, OUTPUT_LOG)
+>       assert result.returncode == 0, (
+            f"`gradlew headless:run` failed with exit code {result.returncode}.\n"
+            f"STDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
+        )
+E       AssertionError: `gradlew headless:run` failed with exit code 1.
+E         STDOUT:
+E         To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+E         Daemon will be stopped at the end of the build 
+E         > Task :core:compileJava UP-TO-DATE
+E         > Task :core:processResources NO-SOURCE
+E         > Task :core:classes UP-TO-DATE
+E         > Task :core:jar UP-TO-DATE
+E         
+E         > Task :headless:compileJava FAILED
+E         
+E         Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+E         
+E         You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+E         
+E         For more on this, please refer to https://docs.gradle.org/8.10/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+E         3 actionable tasks: 1 executed, 2 up-to-date
+E         
+E         STDERR:
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:15: error: MockGL20 is not abstract and does not override abstract method glGetActiveUniform(int,int,IntBuffer,IntBuffer) in GL20
+E         public class MockGL20 implements GL20 {
+E                ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:98: error: method does not override or implement a method from a supertype
+E             @Override public String glGetActiveAttrib(int program, int index, IntBuffer size, Buffer type) { return ""; }
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:99: error: method does not override or implement a method from a supertype
+E             @Override public String glGetActiveUniform(int program, int index, IntBuffer size, Buffer type) { return ""; }
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:112: error: method does not override or implement a method from a supertype
+E             @Override public void glGetShaderSource(int shader, int bufsize, Buffer length, String source) {}
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:137: error: method does not override or implement a method from a supertype
+E             @Override public void glTexParameterfv(int target, int pname, float[] params, int offset) {}
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:138: error: method does not override or implement a method from a supertype
+E             @Override public void glTexParameteriv(int target, int pname, int[] params, int offset) {}
+E             ^
+E         6 errors
+E         
+E         FAILURE: Build failed with an exception.
+E         
+E         * What went wrong:
+E         Execution failed for task ':headless:compileJava'.
+E         > Compilation failed; see the compiler error output for details.
+E         
+E         * Try:
+E         > Run with --info option to get more log output.
+E         > Run with --scan to get full insights.
+E         
+E         BUILD FAILED in 8s
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['./gradlew', '--no-daemon', '--console=plain', 'headless:run', '--args=--scenario=/tmp/stretch....y:\n> Run with --info option to get more log output.\n> Run with --scan to get full insights.\n\nBUILD FAILED in 8s\n').returncode
+
+tests/test_final_state.py:201: AssertionError
+__________________________ test_empty_frame_counting ___________________________
+
+    def test_empty_frame_counting():
+        scenario_path = "/tmp/empty.json"
+        _write_scenario(scenario_path, EMPTY_SCENARIO)
+        result = _run_launcher(scenario_path, OUTPUT_LOG)
+>       assert result.returncode == 0, (
+            f"`gradlew headless:run` failed with exit code {result.returncode}.\n"
+            f"STDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
+        )
+E       AssertionError: `gradlew headless:run` failed with exit code 1.
+E         STDOUT:
+E         To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+E         Daemon will be stopped at the end of the build 
+E         > Task :core:compileJava UP-TO-DATE
+E         > Task :core:processResources NO-SOURCE
+E         > Task :core:classes UP-TO-DATE
+E         > Task :core:jar UP-TO-DATE
+E         
+E         > Task :headless:compileJava FAILED
+E         
+E         Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+E         
+E         You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+E         
+E         For more on this, please refer to https://docs.gradle.org/8.10/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+E         3 actionable tasks: 1 executed, 2 up-to-date
+E         
+E         STDERR:
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:15: error: MockGL20 is not abstract and does not override abstract method glGetActiveUniform(int,int,IntBuffer,IntBuffer) in GL20
+E         public class MockGL20 implements GL20 {
+E                ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:98: error: method does not override or implement a method from a supertype
+E             @Override public String glGetActiveAttrib(int program, int index, IntBuffer size, Buffer type) { return ""; }
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:99: error: method does not override or implement a method from a supertype
+E             @Override public String glGetActiveUniform(int program, int index, IntBuffer size, Buffer type) { return ""; }
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:112: error: method does not override or implement a method from a supertype
+E             @Override public void glGetShaderSource(int shader, int bufsize, Buffer length, String source) {}
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:137: error: method does not override or implement a method from a supertype
+E             @Override public void glTexParameterfv(int target, int pname, float[] params, int offset) {}
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:138: error: method does not override or implement a method from a supertype
+E             @Override public void glTexParameteriv(int target, int pname, int[] params, int offset) {}
+E             ^
+E         6 errors
+E         
+E         FAILURE: Build failed with an exception.
+E         
+E         * What went wrong:
+E         Execution failed for task ':headless:compileJava'.
+E         > Compilation failed; see the compiler error output for details.
+E         
+E         * Try:
+E         > Run with --info option to get more log output.
+E         > Run with --scan to get full insights.
+E         
+E         BUILD FAILED in 8s
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['./gradlew', '--no-daemon', '--console=plain', 'headless:run', '--args=--scenario=/tmp/empty.js...y:\n> Run with --info option to get more log output.\n> Run with --scan to get full insights.\n\nBUILD FAILED in 8s\n').returncode
+
+tests/test_final_state.py:243: AssertionError
+___________________ test_output_is_overwritten_between_runs ____________________
+
+    def test_output_is_overwritten_between_runs():
+        # Run stretch scenario first.
+        stretch_path = "/tmp/stretch.json"
+        _write_scenario(stretch_path, STRETCH_SCENARIO)
+        first = _run_launcher(stretch_path, OUTPUT_LOG)
+>       assert first.returncode == 0, (
+            f"First run (stretch) failed: {first.stderr}"
+        )
+E       AssertionError: First run (stretch) failed: /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:15: error: MockGL20 is not abstract and does not override abstract method glGetActiveUniform(int,int,IntBuffer,IntBuffer) in GL20
+E         public class MockGL20 implements GL20 {
+E                ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:98: error: method does not override or implement a method from a supertype
+E             @Override public String glGetActiveAttrib(int program, int index, IntBuffer size, Buffer type) { return ""; }
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:99: error: method does not override or implement a method from a supertype
+E             @Override public String glGetActiveUniform(int program, int index, IntBuffer size, Buffer type) { return ""; }
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:112: error: method does not override or implement a method from a supertype
+E             @Override public void glGetShaderSource(int shader, int bufsize, Buffer length, String source) {}
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:137: error: method does not override or implement a method from a supertype
+E             @Override public void glTexParameterfv(int target, int pname, float[] params, int offset) {}
+E             ^
+E         /home/user/myproject/headless/src/main/java/com/example/headless/MockGL20.java:138: error: method does not override or implement a method from a supertype
+E             @Override public void glTexParameteriv(int target, int pname, int[] params, int offset) {}
+E             ^
+E         6 errors
+E         
+E         FAILURE: Build failed with an exception.
+E         
+E         * What went wrong:
+E         Execution failed for task ':headless:compileJava'.
+E         > Compilation failed; see the compiler error output for details.
+E         
+E         * Try:
+E         > Run with --info option to get more log output.
+E         > Run with --scan to get full insights.
+E         
+E         BUILD FAILED in 7s
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['./gradlew', '--no-daemon', '--console=plain', 'headless:run', '--args=--scenario=/tmp/stretch....y:\n> Run with --info option to get more log output.\n> Run with --scan to get full insights.\n\nBUILD FAILED in 7s\n').returncode
+
+tests/test_final_state.py:263: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_project_directory_exists
+PASSED tests/test_final_state.py::test_gradle_wrapper_exists
+PASSED tests/test_final_state.py::test_core_and_headless_modules_present
+PASSED tests/test_final_state.py::test_uses_libgdx_headless_backend_1_14_2
+PASSED tests/test_final_state.py::test_gradlew_executable
+FAILED tests/test_final_state.py::test_fit_viewport_scenario - AssertionError...
+FAILED tests/test_final_state.py::test_stretch_viewport_scenario - AssertionE...
+FAILED tests/test_final_state.py::test_empty_frame_counting - AssertionError:...
+FAILED tests/test_final_state.py::test_output_is_overwritten_between_runs - A...
+========================= 4 failed, 5 passed in 34.26s =========================

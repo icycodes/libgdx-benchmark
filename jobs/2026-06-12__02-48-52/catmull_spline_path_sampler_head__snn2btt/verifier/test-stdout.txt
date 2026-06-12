@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 9 items
+
+tests/test_final_state.py .........                                      [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_output_csv_created
+PASSED tests/test_final_state.py::test_output_csv_line_count
+PASSED tests/test_final_state.py::test_output_csv_header
+PASSED tests/test_final_state.py::test_output_csv_row_format
+PASSED tests/test_final_state.py::test_output_csv_tick_column_order
+PASSED tests/test_final_state.py::test_output_csv_t_column_order
+PASSED tests/test_final_state.py::test_output_csv_positions_match_catmullrom_math
+PASSED tests/test_final_state.py::test_output_csv_speed_strictly_positive
+PASSED tests/test_final_state.py::test_rerun_with_shorter_input_overwrites_output
+============================== 9 passed in 8.85s ===============================

@@ -1,0 +1,89 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T19:38:41.075947+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 4,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781206688687,
+            "stop": 1781206721075
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_settings_gradle_declares_modules",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781206688739,
+                "stop": 1781206688741,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_gradle_wrapper_executable",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781206688741,
+                "stop": 1781206688742,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_server_runtime_classpath_uses_headless_backend",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 5931,
+                "start": 1781206688742,
+                "stop": 1781206694673,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_server_runtime_classpath_uses_headless_backend():\n        result = subprocess.run(\n            [\n                GRADLEW,\n                \"--no-daemon\",\n                \"-q\",\n                \":server:dependencies\",\n                \"--configuration\",\n                \"runtimeClasspath\",\n            ],\n            cwd=PROJECT_DIR,\n            capture_output=True,\n            text=True,\n            timeout=GRADLE_RUN_TIMEOUT_SECONDS,\n        )\n        assert result.returncode == 0, (\n            f\"`gradlew :server:dependencies` failed:\\nstdout:\\n{result.stdout}\\nstderr:\\n{result.stderr}\"\n        )\n        combined = result.stdout + result.stderr\n        assert \"gdx-backend-headless\" in combined, (\n            \"The server runtime classpath must include `gdx-backend-headless`.\"\n        )\n>       assert \"gdx-platform\" in combined and \"natives-desktop\" in combined, (\n            \"The server runtime classpath must include `gdx-platform` with the natives-desktop classifier.\"\n        )\nE       AssertionError: The server runtime classpath must include `gdx-platform` with the natives-desktop classifier.\nE       assert ('gdx-platform' in \"\\n------------------------------------------------------------\\nProject ':server'\\n----------------------------------... followed by this annotation.\\n\\nA web-based, searchable dependency report is available by adding the --scan option.\\n\" and 'natives-desktop' in \"\\n------------------------------------------------------------\\nProject ':server'\\n----------------------------------... followed by this annotation.\\n\\nA web-based, searchable dependency report is available by adding the --scan option.\\n\")\n\ntests/test_final_state.py:126: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_case_a_two_players_multiple_ticks",
+                "status": "passed",
+                "duration": 6584,
+                "start": 1781206694673,
+                "stop": 1781206701257,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_case_b_clamping_and_unknown_player",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 6778,
+                "start": 1781206701258,
+                "stop": 1781206708036,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_case_b_clamping_and_unkno0')\n\n    def test_case_b_clamping_and_unknown_player(tmp_path):\n        input_path = str(tmp_path / \"match_b.log\")\n        output_path = str(tmp_path / \"transcript_b.json\")\n        with open(input_path, \"w\", encoding=\"utf-8\", newline=\"\\n\") as f:\n            f.write(MATCH_B)\n    \n        result = _run_server(input_path, output_path)\n        assert result.returncode == 0, (\n            f\"Server invocation for Match B failed.\\nstdout:\\n{result.stdout}\\nstderr:\\n{result.stderr}\"\n        )\n        transcript = _load_transcript(output_path)\n        _assert_transcript_shape(transcript)\n    \n        assert transcript[\"world\"] == {\"width\": 3, \"height\": 3}, (\n            f\"world should be 3x3 for Match B; got {transcript['world']}.\"\n        )\n        assert transcript[\"totalTicks\"] == 3, (\n            f\"totalTicks should be 3 for Match B; got {transcript['totalTicks']}.\"\n        )\n>       assert transcript[\"commandsApplied\"] == 4, (\n            \"commandsApplied should be 4 for Match B (the stray player-2 command must be ignored); \"\n            f\"got {transcript['commandsApplied']}.\"\n        )\nE       AssertionError: commandsApplied should be 4 for Match B (the stray player-2 command must be ignored); got 3.\nE       assert 3 == 4\n\ntests/test_final_state.py:223: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_case_c_no_commands_is_deterministic",
+                "status": "passed",
+                "duration": 13038,
+                "start": 1781206708037,
+                "stop": 1781206721075,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

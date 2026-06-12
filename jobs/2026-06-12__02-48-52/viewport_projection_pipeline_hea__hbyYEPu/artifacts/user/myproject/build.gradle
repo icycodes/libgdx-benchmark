@@ -1,0 +1,33 @@
+allprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
+    sourceCompatibility = 17
+    targetCompatibility = 17
+}
+
+project(':core') {
+    dependencies {
+        implementation 'com.badlogicgames.gdx:gdx:1.14.2'
+    }
+}
+
+project(':headless') {
+    apply plugin: 'application'
+    
+    application {
+        mainClass = 'com.example.headless.HeadlessLauncher'
+    }
+    
+    run {
+        standardInput = System.in
+    }
+    
+    dependencies {
+        implementation project(':core')
+        implementation 'com.badlogicgames.gdx:gdx:1.14.2'
+        implementation 'com.badlogicgames.gdx:gdx-backend-headless:1.14.2'
+        implementation 'com.badlogicgames.gdx:gdx-platform:1.14.2:natives-desktop'
+    }
+}

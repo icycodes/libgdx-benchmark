@@ -1,0 +1,7 @@
+<scene>
+  <node name="root" x="10" y="20" rotation="0" scaleX="1" scaleY="1">
+    <node name="child" x="5" y="0" rotation="45" scaleX="1" scaleY="1">
+      <node name="leaf" x="3" y="3" rotation="0" scaleX="0.5" scaleY="0.5"/>
+    </node>
+  </node>
+</scene>

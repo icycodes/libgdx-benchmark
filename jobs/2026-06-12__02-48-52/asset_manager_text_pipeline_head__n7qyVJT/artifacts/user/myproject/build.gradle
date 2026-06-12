@@ -1,0 +1,18 @@
+allprojects {
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+}
+
+ext {
+    gdxVersion = '1.14.2'
+}
+
+configure(subprojects) {
+    apply plugin: 'java-library'
+    sourceCompatibility = 17
+    targetCompatibility = 17
+    repositories {
+        mavenCentral()
+    }
+    compileJava.options.encoding = 'UTF-8'
+}

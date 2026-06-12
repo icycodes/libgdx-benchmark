@@ -1,0 +1,101 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T19:17:54.260878+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781205445314,
+            "stop": 1781205474260
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_run_script_present",
+                "status": "passed",
+                "duration": 0,
+                "start": 1781205445331,
+                "stop": 1781205445331,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_headless_backend_declared_in_gradle",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781205445331,
+                "stop": 1781205445333,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_application_uses_headless_application_class",
+                "status": "passed",
+                "duration": 2,
+                "start": 1781205445333,
+                "stop": 1781205445335,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_listener_calls_gdx_app_exit",
+                "status": "passed",
+                "duration": 1,
+                "start": 1781205445335,
+                "stop": 1781205445336,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_frame_count_five",
+                "status": "passed",
+                "duration": 7002,
+                "start": 1781205445336,
+                "stop": 1781205452338,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_frame_count_one",
+                "status": "passed",
+                "duration": 7171,
+                "start": 1781205452338,
+                "stop": 1781205459509,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_frame_count_seventeen",
+                "status": "passed",
+                "duration": 7174,
+                "start": 1781205459510,
+                "stop": 1781205466684,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_no_stray_frame_count_lines",
+                "status": "passed",
+                "duration": 7575,
+                "start": 1781205466685,
+                "stop": 1781205474260,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

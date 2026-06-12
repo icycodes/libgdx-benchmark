@@ -1,0 +1,83 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-06-11T19:08:49.685259+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1781204921584,
+            "stop": 1781204929685
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_single_level_single_enemy",
+                "status": "passed",
+                "duration": 7114,
+                "start": 1781204921600,
+                "stop": 1781204928714,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_multi_level_multi_enemy",
+                "status": "passed",
+                "duration": 186,
+                "start": 1781204928715,
+                "stop": 1781204928901,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_tie_break_first_wins",
+                "status": "passed",
+                "duration": 195,
+                "start": 1781204928901,
+                "stop": 1781204929096,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_no_enemies",
+                "status": "passed",
+                "duration": 202,
+                "start": 1781204929097,
+                "stop": 1781204929299,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_malformed_json_triggers_error",
+                "status": "passed",
+                "duration": 165,
+                "start": 1781204929299,
+                "stop": 1781204929464,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_missing_required_field_triggers_error",
+                "status": "passed",
+                "duration": 220,
+                "start": 1781204929464,
+                "stop": 1781204929684,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

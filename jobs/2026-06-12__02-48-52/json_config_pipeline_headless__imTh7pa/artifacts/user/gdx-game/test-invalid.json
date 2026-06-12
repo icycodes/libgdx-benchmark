@@ -1,0 +1,11 @@
+{
+  "game": "TestGame",
+  "levels": [
+    {
+      "name": "Level 1",
+      "enemies": [
+        { "type": "Goblin", "hp": -10 }
+      ]
+    }
+  ]
+}

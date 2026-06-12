@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.gdxsampler'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/releases/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+ext {
+    gdxVersion = '1.14.2'
+}
+
+dependencies {
+    implementation "com.badlogicgames.gdx:gdx:${gdxVersion}"
+    implementation "com.badlogicgames.gdx:gdx-backend-headless:${gdxVersion}"
+    runtimeOnly "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-desktop"
+}
+
+application {
+    mainClass = 'com.gdxsampler.Main'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+// Allow passing --args from command line to the run task
+run {
+    if (project.hasProperty('appArgs')) {
+        args Eval.me(appArgs)
+    }
+}

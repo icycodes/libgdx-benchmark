@@ -1,0 +1,25 @@
+plugins {
+    id 'application'
+}
+
+def gdxVersion = '1.14.2'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.badlogicgames.gdx:gdx:${gdxVersion}"
+    implementation "com.badlogicgames.gdx:gdx-backend-headless:${gdxVersion}"
+    runtimeOnly "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-desktop"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+application {
+    mainClass = 'com.gdxgame.Launcher'
+}

@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 6 items
+
+tests/test_final_state.py ......                                         [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_static_body_no_gravity_no_impulse
+PASSED tests/test_final_state.py::test_single_impulse_no_gravity
+PASSED tests/test_final_state.py::test_gravity_drop_no_impulse
+PASSED tests/test_final_state.py::test_combined_gravity_and_multiple_impulses
+PASSED tests/test_final_state.py::test_missing_required_header_errors
+PASSED tests/test_final_state.py::test_impulse_step_out_of_range_errors
+============================== 6 passed in 7.69s ===============================

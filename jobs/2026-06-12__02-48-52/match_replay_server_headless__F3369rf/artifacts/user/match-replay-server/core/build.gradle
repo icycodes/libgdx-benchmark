@@ -1,0 +1,4 @@
+// core module — shared simulation, no backend dependency.
+dependencies {
+    implementation 'com.badlogicgames.gdx:gdx:1.14.2'
+}

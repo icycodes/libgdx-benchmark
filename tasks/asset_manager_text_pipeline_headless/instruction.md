@@ -1,0 +1,43 @@
+# libGDX Headless Asset Manager Text Pipeline
+
+## Background
+You are extending a small libGDX 1.14.2 project that runs under the official `gdx-backend-headless` backend (no OpenGL context, no window). The project ships with the Gradle wrapper, two Gradle subprojects (`core` and `headless`), and an empty `assets/` directory.
+
+Game designers want a deterministic, scriptable way to bulk-load level descriptions in CI. Your job is to implement an asynchronous level catalog pipeline on top of libGDX's `AssetManager`. The application reads a manifest file that lists level files, queues each level for asynchronous loading through a custom loader, drives `AssetManager.update()` from the headless render loop until everything finishes, and finally prints a summary that test fixtures can diff against.
+
+## Requirements
+- The application must run entirely under `com.badlogic.gdx.backends.headless.HeadlessApplication` (do **not** depend on `gdx-backend-lwjgl3` or any OpenGL class).
+- Implement a libGDX value type representing a parsed level (name, enemy count, difficulty) and a custom `com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader` that parses the level text file format described below.
+- Register the custom loader on a single `com.badlogic.gdx.assets.AssetManager` instance using `setLoader(...)`.
+- The application must accept one command-line argument: the path to a manifest text file (resolved against the current working directory). Each non-empty, non-comment line of the manifest is a path (relative to the working directory) to a level file. Lines beginning with `#` and blank lines must be ignored.
+- For each manifest entry, the application must `manager.load(path, LevelData.class)` and let the headless render loop drive `manager.update()` until it returns `true`. Synchronous calls such as `finishLoading()` are not allowed.
+- Each level file uses a tiny `key=value` text format with exactly these keys (order does not matter, extra whitespace must be trimmed):
+  - `name=<string>`
+  - `enemies=<non-negative integer>`
+  - `difficulty=<non-negative integer>`
+- After all assets finish loading, the application must print the summary lines described in the Acceptance Criteria, flush stdout, and call `Gdx.app.exit()` so the process terminates cleanly.
+
+## Implementation Hints
+- The libGDX wiki page "Managing your assets" explains the loader lifecycle: `getDependencies`, `loadAsync`, `loadSync`. Use the `FileHandleResolver` passed to the loader to resolve the file - do not call `Gdx.files` directly inside the loader.
+- Inside `ApplicationListener.render()`, call `manager.update()` and emit output only after it returns `true` to keep the load asynchronous.
+- `HeadlessApplicationConfiguration.updatesPerSecond` controls how often `render()` is invoked. A small positive value (for example 60) is fine; the test does not depend on wall-clock timing.
+- Remember to `dispose()` the `AssetManager` before exiting.
+- The `headless` subproject already declares `application { mainClass = 'com.example.game.headless.HeadlessLauncher' }`. Keep that entry point and forward `args` from `main(String[] args)` into your `ApplicationListener`.
+- You may parse the level files however you like (`BufferedReader`, `String.split`, etc.) as long as the loader runs the parsing inside `loadAsync` (the worker thread) rather than in `loadSync`.
+
+## Acceptance Criteria
+- Project path: /home/user/myproject
+- Command: `./gradlew --no-daemon -q headless:run --args="<manifest_path>"`
+  - `<manifest_path>` is a path to a manifest text file, resolved relative to the working directory used when invoking Gradle.
+- The application MUST use `com.badlogic.gdx.assets.AssetManager` together with a custom `AsynchronousAssetLoader` to load every level listed in the manifest.
+- Manifest format: UTF-8 text, one entry per line. Blank lines and lines beginning with `#` are ignored. Every other line is a path (relative to the working directory) to a level file.
+- Level-file format: UTF-8 text containing `name=...`, `enemies=...`, `difficulty=...` lines in any order. Surrounding whitespace must be trimmed. Comment lines (`#...`) and blank lines must be ignored.
+- Standard output MUST contain, in this exact order (one line each, no extra characters before or after the values):
+  - One `LOADED <name> enemies=<n> difficulty=<d>` line per level, in the same order the entries appeared in the manifest.
+  - `TOTAL_LEVELS=<count>` where `<count>` is the number of loaded levels (a non-negative integer).
+  - `TOTAL_ENEMIES=<sum>` where `<sum>` is the sum of the `enemies` field across all loaded levels.
+  - `PROGRESS=<final_progress>` where `<final_progress>` is the value returned by `AssetManager.getProgress()` after loading completes, formatted with `%.2f` using `Locale.US` (i.e. always `1.00` when at least one asset was loaded; `0.00` is acceptable when the manifest is empty).
+  - `DONE` as the final line.
+- The application MUST exit on its own (exit code 0) after the `DONE` line is printed.
+- The Gradle build MUST succeed with `./gradlew --no-daemon -q build` without modifications to the offline dependency cache.
+

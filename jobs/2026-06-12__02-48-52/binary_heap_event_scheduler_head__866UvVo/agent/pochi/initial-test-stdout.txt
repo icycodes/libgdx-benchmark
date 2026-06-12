@@ -1,0 +1,33 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /bootstrap
+plugins: json-ctrf-0.5.2
+collected 8 items
+
+bootstrap/test_initial_state.py::test_java_available PASSED
+bootstrap/test_initial_state.py::test_gradle_wrapper_executable PASSED
+bootstrap/test_initial_state.py::test_project_directory_exists PASSED
+bootstrap/test_initial_state.py::test_settings_gradle_exists PASSED
+bootstrap/test_initial_state.py::test_build_gradle_declares_libgdx_dependencies FAILED
+bootstrap/test_initial_state.py::test_build_gradle_configures_main_class PASSED
+bootstrap/test_initial_state.py::test_gradle_wrapper_runs PASSED
+bootstrap/test_initial_state.py::test_no_main_java_yet PASSED
+
+=================================== FAILURES ===================================
+________________ test_build_gradle_declares_libgdx_dependencies ________________
+
+    def test_build_gradle_declares_libgdx_dependencies():
+        build_gradle = os.path.join(PROJECT_DIR, "build.gradle")
+        assert os.path.isfile(build_gradle), f"{build_gradle} does not exist."
+        with open(build_gradle, "r", encoding="utf-8") as fh:
+            content = fh.read()
+>       assert "com.badlogicgames.gdx:gdx:1.14.2" in content, (
+            "build.gradle must declare com.badlogicgames.gdx:gdx:1.14.2."
+        )
+E       AssertionError: build.gradle must declare com.badlogicgames.gdx:gdx:1.14.2.
+E       assert 'com.badlogicgames.gdx:gdx:1.14.2' in 'plugins {\n    id \'application\'\n    id \'java\'\n}\n\nrepositories {\n    mavenCentral()\n}\n\njava {\n    sourceCompatibility = JavaVersion.VERSION_17\n    targetCompatibility = JavaVersion.VERSION_17\n}\n\next {\n    gdxVersion = \'1.14.2\'\n}\n\ndependencies {\n    implementation "com.badlogicgames.gdx:gdx:${gdxVersion}"\n    implementation "com.badlogicgames.gdx:gdx-backend-headless:${gdxVersion}"\n    runtimeOnly    "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-desktop"\n}\n\napplication {\n    mainClass = \'com.example.scheduler.Main\'\n}\n\ntasks.withType(JavaCompile).configureEach {\n    options.encoding = \'UTF-8\'\n}\n\ntasks.named(\'run\') {\n    standardInput = System.in\n}\n'
+
+bootstrap/test_initial_state.py:32: AssertionError
+=========================== short test summary info ============================
+FAILED bootstrap/test_initial_state.py::test_build_gradle_declares_libgdx_dependencies
+========================= 1 failed, 7 passed in 1.98s ==========================

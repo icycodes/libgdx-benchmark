@@ -1,0 +1,74 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 8 items
+
+tests/test_final_state.py ......F.                                       [100%]
+
+=================================== FAILURES ===================================
+______________ test_loop_reversed_play_mode_and_overwrites_output ______________
+
+    def test_loop_reversed_play_mode_and_overwrites_output():
+        # Pre-populate so we can verify overwrite-not-append semantics.
+        _write(OUTPUT_PATH, "STALE\n")
+        cfg = "/tmp/cfg_lr.txt"
+        _write(
+            cfg,
+            textwrap.dedent(
+                """\
+                # play backwards forever
+                frameDuration 0.5
+                playMode LOOP_REVERSED
+                keyFrames 1 2 3 4
+                sample 0.0
+                sample 0.6
+                sample 1.1
+                sample 1.6
+                sample 2.1
+                """
+            ),
+        )
+        result = _run_sampler(cfg)
+        assert result.returncode == 0, (
+            f"Sampler failed for LOOP_REVERSED scenario.\nstdout:\n{result.stdout}\nstderr:\n{result.stderr}"
+        )
+        expected = (
+            "0.0 4 false\n"
+            "0.6 3 false\n"
+            "1.1 2 false\n"
+            "1.6 1 true\n"
+            "2.1 4 true\n"
+        )
+        actual = _read(OUTPUT_PATH)
+        assert "STALE" not in actual, (
+            "Output file still contains stale content; the sampler must overwrite the file rather than append."
+        )
+>       assert actual == expected, (
+            f"LOOP_REVERSED output mismatch.\nExpected:\n{expected!r}\nActual:\n{actual!r}"
+        )
+E       AssertionError: LOOP_REVERSED output mismatch.
+E         Expected:
+E         '0.0 4 false\n0.6 3 false\n1.1 2 false\n1.6 1 true\n2.1 4 true\n'
+E         Actual:
+E         '0.0 4 false\n0.6 3 false\n1.1 2 false\n1.6 1 false\n2.1 4 true\n'
+E       assert '0.0 4 false\...n2.1 4 true\n' == '0.0 4 false\...n2.1 4 true\n'
+E           0.0 4 false
+E           0.6 3 false
+E           1.1 2 false
+E         - 1.6 1 true
+E         + 1.6 1 false
+E           2.1 4 true
+
+tests/test_final_state.py:282: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_project_declares_libgdx_dependencies
+PASSED tests/test_final_state.py::test_source_uses_headless_application_and_animation
+PASSED tests/test_final_state.py::test_loop_play_mode
+PASSED tests/test_final_state.py::test_normal_play_mode_clamps_to_last_frame
+PASSED tests/test_final_state.py::test_reversed_play_mode
+PASSED tests/test_final_state.py::test_loop_pingpong_play_mode
+PASSED tests/test_final_state.py::test_empty_sample_list_produces_empty_output_file
+FAILED tests/test_final_state.py::test_loop_reversed_play_mode_and_overwrites_output
+========================= 1 failed, 7 passed in 49.83s =========================

@@ -1,0 +1,164 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /tests
+plugins: json-ctrf-0.5.2
+collected 6 items
+
+tests/test_final_state.py ..FFFF                                         [100%]
+
+=================================== FAILURES ===================================
+_____________ test_server_runtime_classpath_uses_headless_backend ______________
+
+    def test_server_runtime_classpath_uses_headless_backend():
+        result = subprocess.run(
+            [
+                GRADLEW,
+                "--no-daemon",
+                "-q",
+                ":server:dependencies",
+                "--configuration",
+                "runtimeClasspath",
+            ],
+            cwd=PROJECT_DIR,
+            capture_output=True,
+            text=True,
+            timeout=GRADLE_RUN_TIMEOUT_SECONDS,
+        )
+        assert result.returncode == 0, (
+            f"`gradlew :server:dependencies` failed:\nstdout:\n{result.stdout}\nstderr:\n{result.stderr}"
+        )
+        combined = result.stdout + result.stderr
+        assert "gdx-backend-headless" in combined, (
+            "The server runtime classpath must include `gdx-backend-headless`."
+        )
+>       assert "gdx-platform" in combined and "natives-desktop" in combined, (
+            "The server runtime classpath must include `gdx-platform` with the natives-desktop classifier."
+        )
+E       AssertionError: The server runtime classpath must include `gdx-platform` with the natives-desktop classifier.
+E       assert ('gdx-platform' in "\n------------------------------------------------------------\nProject ':server'\n----------------------------------...s omitted (listed previously)\n\nA web-based, searchable dependency report is available by adding the --scan option.\n" and 'natives-desktop' in "\n------------------------------------------------------------\nProject ':server'\n----------------------------------...s omitted (listed previously)\n\nA web-based, searchable dependency report is available by adding the --scan option.\n")
+
+tests/test_final_state.py:126: AssertionError
+____________________ test_case_a_two_players_multiple_ticks ____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_case_a_two_players_multip0')
+
+    def test_case_a_two_players_multiple_ticks(tmp_path):
+        input_path = str(tmp_path / "match_a.log")
+        output_path = str(tmp_path / "transcript_a.json")
+        with open(input_path, "w", encoding="utf-8", newline="\n") as f:
+            f.write(MATCH_A)
+    
+        result = _run_server(input_path, output_path)
+>       assert result.returncode == 0, (
+            f"Server invocation for Match A failed.\nstdout:\n{result.stdout}\nstderr:\n{result.stderr}"
+        )
+E       AssertionError: Server invocation for Match A failed.
+E         stdout:
+E         
+E         stderr:
+E         
+E         FAILURE: Build failed with an exception.
+E         
+E         * What went wrong:
+E         Task '/tmp/pytest-of-root/pytest-0/test_case_a_two_players_multip0/transcript_a.json' not found in root project 'match-replay-server' and its subprojects.
+E         
+E         * Try:
+E         > Run gradlew tasks to get a list of available tasks.
+E         > Run with --stacktrace option to get the stack trace.
+E         > Run with --info or --debug option to get more log output.
+E         > Run with --scan to get full insights.
+E         
+E         * Get more help at https://help.gradle.org
+E         
+E         BUILD FAILED in 4s
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/home/user/match-replay-server/gradlew', '--no-daemon', '-q', ':server:run', '--args=/tmp/pyte...utput.\n> Run with --scan to get full insights.\n\n* Get more help at https://help.gradle.org\n\nBUILD FAILED in 4s\n").returncode
+
+tests/test_final_state.py:161: AssertionError
+___________________ test_case_b_clamping_and_unknown_player ____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_case_b_clamping_and_unkno0')
+
+    def test_case_b_clamping_and_unknown_player(tmp_path):
+        input_path = str(tmp_path / "match_b.log")
+        output_path = str(tmp_path / "transcript_b.json")
+        with open(input_path, "w", encoding="utf-8", newline="\n") as f:
+            f.write(MATCH_B)
+    
+        result = _run_server(input_path, output_path)
+>       assert result.returncode == 0, (
+            f"Server invocation for Match B failed.\nstdout:\n{result.stdout}\nstderr:\n{result.stderr}"
+        )
+E       AssertionError: Server invocation for Match B failed.
+E         stdout:
+E         
+E         stderr:
+E         
+E         FAILURE: Build failed with an exception.
+E         
+E         * What went wrong:
+E         Task '/tmp/pytest-of-root/pytest-0/test_case_b_clamping_and_unkno0/transcript_b.json' not found in root project 'match-replay-server' and its subprojects.
+E         
+E         * Try:
+E         > Run gradlew tasks to get a list of available tasks.
+E         > Run with --stacktrace option to get the stack trace.
+E         > Run with --info or --debug option to get more log output.
+E         > Run with --scan to get full insights.
+E         
+E         * Get more help at https://help.gradle.org
+E         
+E         BUILD FAILED in 4s
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/home/user/match-replay-server/gradlew', '--no-daemon', '-q', ':server:run', '--args=/tmp/pyte...utput.\n> Run with --scan to get full insights.\n\n* Get more help at https://help.gradle.org\n\nBUILD FAILED in 4s\n").returncode
+
+tests/test_final_state.py:211: AssertionError
+___________________ test_case_c_no_commands_is_deterministic ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_case_c_no_commands_is_det0')
+
+    def test_case_c_no_commands_is_deterministic(tmp_path):
+        input_path = str(tmp_path / "match_c.log")
+        output_path = str(tmp_path / "transcript_c.json")
+        with open(input_path, "w", encoding="utf-8", newline="\n") as f:
+            f.write(MATCH_C)
+    
+        # First run.
+        result1 = _run_server(input_path, output_path)
+>       assert result1.returncode == 0, (
+            f"First Match C invocation failed.\nstdout:\n{result1.stdout}\nstderr:\n{result1.stderr}"
+        )
+E       AssertionError: First Match C invocation failed.
+E         stdout:
+E         
+E         stderr:
+E         
+E         FAILURE: Build failed with an exception.
+E         
+E         * What went wrong:
+E         Task '/tmp/pytest-of-root/pytest-0/test_case_c_no_commands_is_det0/transcript_c.json' not found in root project 'match-replay-server' and its subprojects.
+E         
+E         * Try:
+E         > Run gradlew tasks to get a list of available tasks.
+E         > Run with --stacktrace option to get the stack trace.
+E         > Run with --info or --debug option to get more log output.
+E         > Run with --scan to get full insights.
+E         
+E         * Get more help at https://help.gradle.org
+E         
+E         BUILD FAILED in 5s
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/home/user/match-replay-server/gradlew', '--no-daemon', '-q', ':server:run', '--args=/tmp/pyte...utput.\n> Run with --scan to get full insights.\n\n* Get more help at https://help.gradle.org\n\nBUILD FAILED in 5s\n").returncode
+
+tests/test_final_state.py:259: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_settings_gradle_declares_modules
+PASSED tests/test_final_state.py::test_gradle_wrapper_executable
+FAILED tests/test_final_state.py::test_server_runtime_classpath_uses_headless_backend
+FAILED tests/test_final_state.py::test_case_a_two_players_multiple_ticks - As...
+FAILED tests/test_final_state.py::test_case_b_clamping_and_unknown_player - A...
+FAILED tests/test_final_state.py::test_case_c_no_commands_is_deterministic - ...
+========================= 4 failed, 2 passed in 30.52s =========================

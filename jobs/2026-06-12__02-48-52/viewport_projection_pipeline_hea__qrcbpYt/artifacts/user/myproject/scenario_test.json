@@ -1,0 +1,28 @@
+{
+  "viewport": "fit",
+  "worldWidth": 800,
+  "worldHeight": 480,
+  "cameraPosition": { "x": 400, "y": 240 },
+  "frames": [
+    {
+      "frame": 1,
+      "resize": { "width": 1280, "height": 720 },
+      "points": [
+        { "x": 0,   "y": 0   },
+        { "x": 400, "y": 240 },
+        { "x": 800, "y": 480 }
+      ]
+    },
+    {
+      "frame": 2,
+      "resize": { "width": 640, "height": 480 },
+      "points": [
+        { "x": 200, "y": 120 }
+      ]
+    },
+    {
+      "frame": 3,
+      "points": []
+    }
+  ]
+}
